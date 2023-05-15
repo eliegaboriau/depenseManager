@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import "rails_bootstrap_forms";
+
+.notice {
+  color: green;
+}
+
+.alert {
+  color: red
+}

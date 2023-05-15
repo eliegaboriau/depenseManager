@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :user_authorized?, only: %i[show edit update destroy ]
 
   # GET /categories or /categories.json
   def index
@@ -49,6 +50,7 @@ class CategoriesController < ApplicationController
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
+    Depense.where(category: @category).destroy_all
     @category.destroy
 
     respond_to do |format|
@@ -66,5 +68,11 @@ class CategoriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def category_params
       params.require(:category).permit(:name, :user_id)
+    end
+
+    def user_authorized?
+      if @category.user_id != current_user.id
+        redirect_to categories_path, notice: "Vous n'êtes pas autorisé à accéder à cette page"
+      end
     end
 end

@@ -1,24 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Categories</h1>
+<h1>Catégories</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @categories.each do |category| %>
+    <% @categories.where(user: current_user).each do |category| %>
       <tr>
         <td><%= category.name %></td>
-        <td><%= category.user_id %></td>
-        <td><%= link_to 'Show', category %></td>
-        <td><%= link_to 'Edit', edit_category_path(category) %></td>
-        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Voir', category %></td>
+        <td><%= link_to 'Modifier', edit_category_path(category) %></td>
+        <td><%= link_to 'Supprimer',
+                        category,
+                        method: :delete,
+                        data: { confirm: "Attention, si vous supprimez cette catégorie, les #{Depense.where(category: category).count} dépenses qui y sont liés seront aussi supprimées" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Category', new_category_path %>
+<%= link_to 'Nouvelle catégorie', new_category_path %>

@@ -1,5 +1,6 @@
 class DepensesController < ApplicationController
   before_action :set_depense, only: %i[ show edit update destroy ]
+  before_action :user_authorized?, only: %i[show edit update destroy ]
 
   # GET /depenses or /depenses.json
   def index
@@ -12,6 +13,9 @@ class DepensesController < ApplicationController
 
   # GET /depenses/new
   def new
+    if Category.where(user: current_user).empty?
+      redirect_to depenses_path, alert: "Vous devez d'abord créer au moins une catégorie"
+    end
     @depense = Depense.new
   end
 
@@ -66,5 +70,11 @@ class DepensesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def depense_params
       params.require(:depense).permit(:date, :user_id, :category_id, :amount)
+    end
+
+    def user_authorized?
+      if @depense.user != current_user
+        redirect_to depenses_path, notice: "Vous n'êtes pas autorisé à voir cette page"
+      end
     end
 end

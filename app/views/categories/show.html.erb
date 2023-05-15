@@ -1,14 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Name:</strong>
+  <strong>Nom:</strong>
   <%= @category.name %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @category.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Modifier la catégorie', edit_category_path(@category) %> |
+<%= link_to 'Voir les catégories', categories_path %>

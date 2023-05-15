@@ -1,24 +1,17 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Date:</strong>
   <%= @depense.date %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @depense.user_id %>
+  <strong>Catégorie:</strong>
+  <%= @depense.category.name %>
 </p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @depense.category_id %>
+  <strong>Montant:</strong>
+  <%= @depense.amount %>€
 </p>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @depense.amount %>
-</p>
-
-<%= link_to 'Edit', edit_depense_path(@depense) %> |
-<%= link_to 'Back', depenses_path %>
+<%= link_to 'Modifier la dépense', edit_depense_path(@depense) %> |
+<%= link_to 'Voir les dépenses', depenses_path %>
