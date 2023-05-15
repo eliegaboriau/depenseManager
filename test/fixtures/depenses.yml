@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2023-05-14
+  user: one
+  category: one
+  amount: 
+
+two:
+  date: 2023-05-14
+  user: two
+  category: two
+  amount: 
