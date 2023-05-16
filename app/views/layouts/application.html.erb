@@ -1,49 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>DepenseManager</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>DepenseManager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style>
+      /* Add your default styles here */
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f1f8ff; /* Light blue color */
+      }
 
-  <body>
-    <header>
-      <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/"> Tools </a>
-        <a class="btn btn-outline-success" href="/depenses" role="button">
-          Gérer ses dépenses
-        </a>
-        <a class="btn btn-outline-success" href="/categories" role="button">
-          Gérer ses catégories
-        </a>
-        <a class="btn btn-outline-success" href="/users/edit" role="button">
-          Gérer ses informations de connexion
-        </a>
-        <a class="btn btn-outline-success" href=<%= edit_account_path %> role="button">
-          Gérer ses paramètres
-        </a>
-        <form class="form-inline">
-          <% if current_user %>
-            <a class="btn btn-outline-success" href="/users/sign_out" role="button">
-              Se déconnecter
-            </a>
-          <% else %>
-            <a class="btn btn-outline-primary" href="/users/sign_in" role="button">
-              Se connecter
-            </a>
-            <a class="btn btn-outline-success" href="/users/sign_up" role="button">
-              S'inscrire
-            </a>
-          <% end %>
-        </form>
-      </nav>
-    </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
+      header {
+          background-color: #EEEEEE;
+          border: #FFFFFF;
+          padding: 20px;
+      }
+
+      .navbar-brand {
+          font-size: 24px;
+          font-weight: bold;
+          color: #333;
+          text-decoration: none;
+      }
+
+      .navbar-brand:hover {
+          color: #000;
+      }
+
+      .navbar-nav .btn {
+          margin-left: 10px;
+      }
+
+      .notice {
+          background-color: #d4edda;
+          color: #155724;
+          padding: 10px;
+          margin-bottom: 20px;
+      }
+
+      .alert {
+          background-color: #f8d7da;
+          color: #721c24;
+          padding: 10px;
+          margin-bottom: 20px;
+      }
+
+      .content-container {
+          margin: 0 auto;
+          max-width: 800px; /* Adjust the maximum width as needed */
+          padding: 20px;
+      }
+  </style>
+</head>
+
+<body>
+<header>
+  <nav class="navbar navbar-dark">
+    <a class="navbar-brand" href="/">Tools</a>
+    <a class="btn btn-outline-primary" href="/depenses" role="button">Gérer ses dépenses</a>
+    <a class="btn btn-outline-primary" href="/categories" role="button">Gérer ses catégories</a>
+    <a class="btn btn-outline-primary" href="/users/edit" role="button">Gérer ses informations de connexion</a>
+    <a class="btn btn-outline-primary" href=<%= edit_account_path %> role="button">Gérer ses paramètres</a>
+    <form class="form-inline">
+      <% if current_user %>
+        <a class="btn btn-outline-primary" href="/users/sign_out" role="button">Se déconnecter</a>
+      <% else %>
+        <a class="btn btn-outline-primary" href="/users/sign_in" role="button">Se connecter</a>
+        <a class="btn btn-outline-primary" href="/users/sign_up" role="button">S'inscrire</a>
+      <% end %>
+    </form>
+  </nav>
+</header>
+<% if notice.present? %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+<% if alert.present? %>
+  <p class="alert"><%= alert %></p>
+<% end %>
+<div class="content-container">
+  <%= yield %>
+</div>
+</body>
 </html>
