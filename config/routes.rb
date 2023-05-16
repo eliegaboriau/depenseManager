@@ -11,5 +11,8 @@ Rails.application.routes.draw do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+  get 'account/edit', to: 'account#edit', as: 'edit_account'
+  patch 'account', to: 'account#update'
+  get 'account', to: 'account#edit' # Optional: Redirect the main account page to the edit action
 end
 

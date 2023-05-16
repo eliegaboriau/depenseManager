@@ -20,6 +20,12 @@
         <a class="btn btn-outline-success" href="/categories" role="button">
           Gérer ses catégories
         </a>
+        <a class="btn btn-outline-success" href="/users/edit" role="button">
+          Gérer ses informations de connexion
+        </a>
+        <a class="btn btn-outline-success" href=<%= edit_account_path %> role="button">
+          Gérer ses paramètres
+        </a>
         <form class="form-inline">
           <% if current_user %>
             <a class="btn btn-outline-success" href="/users/sign_out" role="button">

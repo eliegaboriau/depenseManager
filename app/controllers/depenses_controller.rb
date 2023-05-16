@@ -4,7 +4,22 @@ class DepensesController < ApplicationController
 
   # GET /depenses or /depenses.json
   def index
-    @depenses = Depense.all
+    if params[:start_date].present? && params[:end_date].present?
+      start_date = Date.parse(params[:start_date])
+      end_date = Date.parse(params[:end_date])
+      @depenses = Depense.where(user: current_user).where(date: start_date..end_date)
+    else
+      current_date = Date.current
+      if current_date.day < current_user.monthly_debit_date
+        # Display expenses from the previous month
+        starting_date = (current_date.beginning_of_month - 1.month) + (current_user.monthly_debit_date - 1).days
+      else
+        # Display expenses from the current month
+        starting_date = current_date.beginning_of_month + (current_user.monthly_debit_date - 1).days
+      end
+
+      @depenses = Depense.where(user: current_user).where("date >= ?", starting_date)
+    end
   end
 
   # GET /depenses/1 or /depenses/1.json

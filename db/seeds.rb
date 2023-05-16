@@ -7,13 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Create users
-5.times do
+4.times do
   User.create!(
     email: Faker::Internet.email,
     password: 'password' # Change this to the desired password
   )
   puts "User created with email: #{User.last.email} and password: password"
 end
+
+User.create!(
+  email: 'admin@example.org',
+  password: 'decidim123456',
+)
+puts "User created with email: #{User.last.email} and password: password"
 
 # Create categories for each user
 User.all.each do |user|
@@ -32,7 +38,7 @@ User.all.each do |user|
     Depense.create!(
       amount: Faker::Number.between(from: 10, to: 1000),
       category: Category.where(user: user).sample,
-      date: Faker::Date.between(from: 1.year.ago, to: Date.today),
+      date: Faker::Date.between(from: 1.month.ago, to: Date.today),
       user: user
     )
   end

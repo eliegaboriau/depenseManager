@@ -1,0 +1,9 @@
+<h1>Modifier vos paramètres</h1>
+
+<%= bootstrap_form_for @user, url: account_path, method: :patch do |f| %>
+  <div class="field">
+    <%= f.label :monthly_debit_date, value: "Date de début du mois" %>
+    <%= f.number_field :monthly_debit_date, in: 1..28 %>  </div>
+
+  <%= f.submit 'Modifier' %>
+<% end %>

@@ -1,5 +1,10 @@
 <h1>Dépenses</h1>
 
+<%= bootstrap_form_with url: depenses_path, method: :get do |form| %>
+  <p> Je préfererai voir mes dépenses du <%= form.date_field :start_date, value: params[:start_date], label: '&nbsp;'.html_safe %> jusqu'au <%= form.date_field :end_date, value: params[:end_date], label: '&nbsp;'.html_safe %></p>
+  <%= form.submit "Filter Expenses" %>
+<% end %>
+
 <table>
   <thead>
     <tr>
