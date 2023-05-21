@@ -5,7 +5,9 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-
+//= require highcharts
+// to get the new features in 2.3.0:
+//= require highcharts/highcharts-more
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"

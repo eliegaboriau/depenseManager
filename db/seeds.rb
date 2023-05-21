@@ -19,7 +19,7 @@ User.create!(
   email: 'admin@example.org',
   password: 'decidim123456',
 )
-puts "User created with email: #{User.last.email} and password: password"
+puts "User created with email: #{User.last.email} and password: decidim123456"
 
 # Create categories for each user
 User.all.each do |user|
